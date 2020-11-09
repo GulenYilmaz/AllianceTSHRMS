@@ -5,8 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ats.testbase.BaseClass;
+import com.ats.utils.CommonMethods;
 
-public class CourseManagementPageElements  {
+public class ATSCourseManagementPageElements extends CommonMethods {
 
 	
 	
@@ -15,7 +16,7 @@ public class CourseManagementPageElements  {
 	
 	@FindBy(xpath  ="//button[@class='btn btn-danger']")
 	public WebElement logOutBtn;
-	 
+	
 	
 	@FindBy(xpath  ="//select[@class='form-control input-sm']")
 	public WebElement recordPerPage;
@@ -48,7 +49,7 @@ public class CourseManagementPageElements  {
 	public WebElement deleteCourse1;
 	
 	
-	CourseManagementPageElements (){
+	public ATSCourseManagementPageElements (){
 		PageFactory.initElements(BaseClass.driver, this);
 	}
 }

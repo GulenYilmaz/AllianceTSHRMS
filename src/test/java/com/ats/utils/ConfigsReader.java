@@ -32,7 +32,7 @@ public class ConfigsReader {
 	 * @param key
 	 * @return
 	 */
-	public static String getProperties(String key) {
+	public static String getProperty(String key) {
 		return prop.getProperty(key);
 	}
 

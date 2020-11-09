@@ -5,8 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ats.testbase.BaseClass;
+import com.ats.utils.CommonMethods;
 
-public class LoginPageElements extends BaseClass{
+public class ATSLoginPageElements extends CommonMethods{
 
 	@FindBy(id="user_email")
 	public WebElement adminEmail;
@@ -19,7 +20,7 @@ public class LoginPageElements extends BaseClass{
 	
 	
 	
-	public LoginPageElements () {
+	public ATSLoginPageElements () {
 		PageFactory.initElements(BaseClass.driver, this);
 	}
 }
