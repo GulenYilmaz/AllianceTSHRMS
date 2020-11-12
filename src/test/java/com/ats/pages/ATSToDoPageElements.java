@@ -5,8 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ats.testbase.BaseClass;
+import com.ats.utils.CommonMethods;
 
-public class ATSToDoPageElements {
+public class ATSToDoPageElements extends CommonMethods{
 
 	
 	@FindBy (xpath="//img[@class='img-circle']")
