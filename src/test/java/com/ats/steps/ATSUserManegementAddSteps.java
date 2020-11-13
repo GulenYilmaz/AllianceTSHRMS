@@ -2,6 +2,8 @@ package com.ats.steps;
 
 
 
+import org.junit.Assert;
+
 import com.ats.pages.ATSDashboardPageElements;
 import com.ats.pages.ATSUserManagementPageElements;
 import com.ats.utils.CommonMethods;
@@ -70,11 +72,12 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 	}
 
 	@Then("{string} is added successfully")
-	public void is_added_successfully(String string) {
+	public void is_added_successfully(String userFirstname) throws InterruptedException {
 
-		String actual="";
-		String expected="";
-		
+		sendText(ATSUserManagementPageElements.ATSump.filterName, userFirstname);
+		String actualEmail = ATSUserManagementPageElements.ATSump.johnEmail.getText();
+		String extpectedEmail = "john@john.com";
+		Assert.assertEquals(extpectedEmail, actualEmail);
 		
 	}
 }

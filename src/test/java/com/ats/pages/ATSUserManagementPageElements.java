@@ -51,7 +51,13 @@ public class ATSUserManagementPageElements extends CommonMethods {
 	@FindBy(xpath = "//button[@class='btn btn-info']")
 	public WebElement AddUserSaveButton;
 	
+	@FindBy(xpath="//input[@value='Name']")
+	public WebElement filterName;
+	
+	@FindBy(xpath="//td[text()='john@john.com']")
+	public WebElement johnEmail;
 
+    
 	public ATSUserManagementPageElements() {
 		PageFactory.initElements(BaseClass.driver, this);
 	}
