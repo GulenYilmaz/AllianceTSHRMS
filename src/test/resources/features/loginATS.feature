@@ -1,5 +1,5 @@
 
-
+@TestCAse1
 @validLogin
 Feature: Login to ATS
   I want to use this template for my feature file

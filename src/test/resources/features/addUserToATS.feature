@@ -1,9 +1,12 @@
+@TestCase2
 Feature: Add new User to ATS
-  Background:
+
+  Background: 
     Given user enters valid username and password
     When user clicks on login button
     Then user succesfully logged in
     And user navigates to UserManagementPage
+
   @addUser
   Scenario: Add User with with Username, User Email, User Contact, Assign Password
     When user click add button
@@ -12,11 +15,3 @@ Feature: Add new User to ATS
     Then user selects permission to Grades, Courses, Teacher, Student, User Managements ans ToDos
     And user click save changes button
     Then "John" is added successfully
-
-
-
-
-
-
-
-
