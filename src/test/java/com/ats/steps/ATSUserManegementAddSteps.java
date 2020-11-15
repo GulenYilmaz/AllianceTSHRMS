@@ -80,4 +80,30 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 		Assert.assertEquals(extpectedEmail, actualEmail);
 		
 	}
+	
+	@When("user enter {string}, {string}, {string}, {string}")
+	public void user_enter(String Username, String UserEmail, String UserContact, String AssignPassword) throws InterruptedException {
+		sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, Username);
+		Thread.sleep(2000);
+		sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, UserEmail);
+		Thread.sleep(2000);
+		sendText(ATSUserManagementPageElements.ATSump.addUserContactBox, UserContact);
+		Thread.sleep(2000);
+		sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, AssignPassword);
+		Thread.sleep(2000);
+	}
+
+	@Then("{string}, {string}, {string}, {string} and {string} is added successfully")
+	public void and_is_added_successfully(String Username, String UserEmail, String UserContact, String AssignPassword,String UploadPicture) {
+	    
+		System.out.println("Multible users added succesfully");
+		
+	}
+	
+	//dataTable
+	@When("user enters details and click save button then users are added")
+	public void user_enters_details_and_click_save_button_then_users_are_added(io.cucumber.datatable.DataTable dataTable) {
+	   
+	   
+	}
 }
