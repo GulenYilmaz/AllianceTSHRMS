@@ -7,7 +7,8 @@ Feature: Add multiple Users to ATS
     Then user succesfully logged in
     And user navigates to UserManagementPage
     And user click add button
-@ScenarioOutline
+
+  @ScenarioOutline
   Scenario Outline: Add multiple Users with Scenario Outline
     When user enter "<Username>", "<UserEmail>", "<UserContact>", "<AssignPassword>"
     Then user upload a picture "<UploadPicture>"
@@ -22,10 +23,12 @@ Feature: Add multiple Users to ATS
       | Mike     | mike@mike.com    |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
 
   #Cucumber DataTable
- @DataTable
+  @CucumberDataTable
   Scenario: Adding multible users using  DataTable
     When user enters details and click save button then users are added
+    
       | Username | UserEmail        | UserContact | AssignPassword | UploadPicture                    |
       | Jane     | jane@james.com   |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       | Jimmy    | jimmy@joness.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       | Michael  | michael@mike.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
+    

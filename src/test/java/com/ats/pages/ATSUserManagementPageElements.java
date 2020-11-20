@@ -1,5 +1,7 @@
 package com.ats.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,6 +10,11 @@ import com.ats.testbase.BaseClass;
 import com.ats.utils.CommonMethods;
 
 public class ATSUserManagementPageElements extends CommonMethods {
+	
+	
+	@FindBy(xpath = "//select[@class='form-control input-sm']")
+	public WebElement selectAll;
+	
 	@FindBy(xpath = "//button[@id='add_user']")
 	public WebElement addUserButton;
 

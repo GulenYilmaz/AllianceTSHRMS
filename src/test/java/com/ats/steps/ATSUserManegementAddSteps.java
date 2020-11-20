@@ -1,6 +1,7 @@
 package com.ats.steps;
 
-
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 
@@ -8,7 +9,7 @@ import com.ats.pages.ATSDashboardPageElements;
 import com.ats.pages.ATSUserManagementPageElements;
 import com.ats.utils.CommonMethods;
 
-
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 
 public class ATSUserManegementAddSteps extends CommonMethods {
@@ -66,7 +67,7 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 
 	@When("user click save changes button")
 	public void user_click_save_changes_button() throws InterruptedException {
-	
+
 		ATSUserManagementPageElements.ATSump.AddUserSaveButton.click();
 		Thread.sleep(5000);
 	}
@@ -74,15 +75,21 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 	@Then("{string} is added successfully")
 	public void is_added_successfully(String userFirstname) throws InterruptedException {
 
+		selectDDValue(ATSUserManagementPageElements.ATSump.selectAll, "All");
+		Thread.sleep(2000);
 		sendText(ATSUserManagementPageElements.ATSump.filterName, userFirstname);
+		Thread.sleep(2000);
 		String actualEmail = ATSUserManagementPageElements.ATSump.johnEmail.getText();
+		Thread.sleep(2000);
 		String extpectedEmail = "john@john.com";
+		Thread.sleep(2000);
 		Assert.assertEquals(extpectedEmail, actualEmail);
-		
+
 	}
-	
+
 	@When("user enter {string}, {string}, {string}, {string}")
-	public void user_enter(String Username, String UserEmail, String UserContact, String AssignPassword) throws InterruptedException {
+	public void user_enter(String Username, String UserEmail, String UserContact, String AssignPassword)
+			throws InterruptedException {
 		sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, Username);
 		Thread.sleep(2000);
 		sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, UserEmail);
@@ -94,16 +101,57 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 	}
 
 	@Then("{string}, {string}, {string}, {string} and {string} is added successfully")
-	public void and_is_added_successfully(String Username, String UserEmail, String UserContact, String AssignPassword,String UploadPicture) {
-	    
+	public void and_is_added_successfully(String Username, String UserEmail, String UserContact, String AssignPassword,
+			String UploadPicture) {
+
 		System.out.println("Multible users added succesfully");
-		
+
 	}
-	
-	//dataTable
+
+	// dataTable for just one step
 	@When("user enters details and click save button then users are added")
-	public void user_enters_details_and_click_save_button_then_users_are_added(io.cucumber.datatable.DataTable dataTable) {
-	   
-	   
+	public void user_enters_details_and_click_save_button_then_users_are_added(DataTable dataTable) throws InterruptedException {
+
+		List<Map<String, String>> addUserList=dataTable.asMaps();
+		
+		for(Map<String, String> user :addUserList) {
+			   String expectedUserName= user.get("Username").toString();
+			   String expectedUserEmail= user.get("UserEmail").toString();
+			   String expectedUserContact= user.get("UserContact").toString();
+			   String expectedAssignPassword= user.get("AssignPassword").toString();
+			   String expectedUploadPicture= user.get("UploadPicture").toString();
+			   
+			   sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, expectedUserName);
+			   Thread.sleep(2000);
+			   sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, expectedUserEmail);
+			   Thread.sleep(2000);
+			   sendText(ATSUserManagementPageElements.ATSump.addUserContactBox, expectedUserContact);
+			   Thread.sleep(2000);
+			   sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, expectedAssignPassword);
+			   Thread.sleep(2000);
+			   sendText(ATSUserManagementPageElements.ATSump.userImage, expectedUploadPicture);	   
+			   
+			   
+			   
+			   Thread.sleep(2000);
+				ATSUserManagementPageElements.ATSump.checkBoxGradesManagement.click();
+				Thread.sleep(2000);
+				ATSUserManagementPageElements.ATSump.checkBoxCoursesManagement.click();
+				Thread.sleep(2000);
+				ATSUserManagementPageElements.ATSump.checkBoxTeacherManagement.click();
+				Thread.sleep(2000);
+				ATSUserManagementPageElements.ATSump.checkBoxStudentManagement.click();
+				Thread.sleep(2000);
+				ATSUserManagementPageElements.ATSump.checkBoxUserManagement.click();
+				Thread.sleep(2000);
+				ATSUserManagementPageElements.ATSump.checkBoxToDos.click();
+				Thread.sleep(2000);
+				
+				ATSUserManagementPageElements.ATSump.AddUserSaveButton.click();
+				
+				ATSUserManagementPageElements.ATSump.addUserButton.click();
+				Thread.sleep(5000);
+				
+		}
 	}
 }
