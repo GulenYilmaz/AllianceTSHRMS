@@ -8,6 +8,8 @@ import org.junit.Assert;
 import com.ats.pages.ATSDashboardPageElements;
 import com.ats.pages.ATSUserManagementPageElements;
 import com.ats.utils.CommonMethods;
+import com.ats.utils.Constants;
+import com.ats.utils.ExcelUtility;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
@@ -38,6 +40,8 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 		Thread.sleep(2000);
 		sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, userPassword);
 		Thread.sleep(2000);
+		
+		
 
 	}
 
@@ -159,10 +163,50 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 
 	// from excel
 	@When("user enter data from excel sheet {string}")
-	public void user_enter_data_from_excel_sheet(String sheetName) {
+	public void user_enter_data_from_excel_sheet(String sheetName) throws InterruptedException {
 	 
+		List<Map<String,String>> excelDataList= ExcelUtility.dataFromExcelFile(Constants.EXCEL_FILEPATH, sheetName);
 		
-		
+		for (Map<String, String> data : excelDataList) {
+			
+			
+			// get data from excel
+			String username=data.get("Username");
+			String useremail=data.get("UserEmail");
+			String usercontact=data.get("UserContact");
+			String userpassword=data.get("AssignPassword");
+			String uploadPicture=data.get("UploadPicture");
+			
+			
+			//sent user data from excel
+			sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, username);
+			Thread.sleep(2000);
+			sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, useremail);
+			Thread.sleep(2000);
+			sendText(ATSUserManagementPageElements.ATSump.addUserContactBox, usercontact);
+			Thread.sleep(2000);
+			sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, userpassword);
+			Thread.sleep(2000);
+			
+			//click checkboxs
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxGradesManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxCoursesManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxTeacherManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxStudentManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxUserManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxToDos.click();
+			Thread.sleep(2000);
+			
+			ATSUserManagementPageElements.ATSump.AddUserSaveButton.click();
+			Thread.sleep(5000);
+			
+		}
 		
 		
 	}
