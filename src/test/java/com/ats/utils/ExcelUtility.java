@@ -3,6 +3,10 @@ package com.ats.utils;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.imageio.stream.FileImageInputStream;
 
@@ -71,16 +75,43 @@ public class ExcelUtility {
 		Object[][] data = new Object[rows - 1][colums];
 
 		// get rows
-		for (int i = 1; i < rows; i++) {
+		for (int row = 1; row < rows; row++) {
 			// get colums
-			for (int j = 0; j < colums; j++) {
+			for (int column = 0; column < colums; column++) {
 
-				data[i - 1][j] = columsName(i, j);
+				data[row - 1][column] = columsName(row, column);
 
 			}
 		}
 
 		return data;
 	}
+	
+	public static List<Map<String,String>> dataFromExcelFile(String filePath, String sheetName){
+		
+		
+		openExcel(filePath);
+		loadSheet(sheetName);
+		
+		List<Map<String,String>> excelList=new ArrayList<>();
+		  Map<String,String> excelMap;
+		
+		for (int row = 1; row < rowCount(); row++) {
+			excelMap= new LinkedHashMap<>();//order
+			
+			for (int column = 0; column < columsCount(row); column++) {
+				excelMap.put(columsName(0, column), columsName(row, column));
+			}
+			
+			excelList.add(excelMap);
+			
+		}
+		
+		
+		
+		return excelList;
+	}
+	
+	
 
 }

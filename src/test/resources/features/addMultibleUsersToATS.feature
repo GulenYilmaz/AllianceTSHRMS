@@ -31,4 +31,10 @@ Feature: Add multiple Users to ATS
       | Jane     | jane@james.com   |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       | Jimmy    | jimmy@joness.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       | Michael  | michael@mike.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
+      
+      
+  @Excel
+  Scenario: Adding multible users from excel file
+  When user enter data from excel sheet "UserData" 
+  Then user is succesfuly added
     

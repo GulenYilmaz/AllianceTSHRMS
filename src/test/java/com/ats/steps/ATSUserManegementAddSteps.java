@@ -154,4 +154,23 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 				
 		}
 	}
+	
+	
+
+	// from excel
+	@When("user enter data from excel sheet {string}")
+	public void user_enter_data_from_excel_sheet(String sheetName) {
+	 
+		
+		
+		
+		
+	}
+
+	@Then("user is succesfuly added")
+	public void user_is_succesfuly_added() {
+
+		System.out.println("Multible users added succesfully");
+
+	}
 }
