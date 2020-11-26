@@ -67,14 +67,14 @@ public class ExcelUtility extends CommonMethods{
 		loadSheet(adduserfromexcelsheet);
 
 		//int rows = rowCount();
-		//int colums = columsCount();
+		//int columns = columsCount();
 
 		Object[][] data = new Object[rowCount() - 1][columsCount()];
 
 	    //i=row j=column
 		// get rows
 		for (int i = 1; i < rowCount(); i++) {
-			// get colums
+			// get columns
 			for (int j = 0; j < columsCount(); j++) {
 
 				data[i - 1][j] = columsName(i, j);

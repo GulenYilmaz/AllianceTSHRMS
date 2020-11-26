@@ -1,6 +1,11 @@
+
+
 @TestCase3
 Feature: Add multiple Users to ATS
 
+  
+  
+  
   Background: 
     Given user enters valid username and password
     When user clicks on login button
@@ -8,6 +13,11 @@ Feature: Add multiple Users to ATS
     And user navigates to UserManagementPage
     And user click add button
 
+ 
+ 
+ 
+ 
+ # Scenario Outline with Examples keyword
   @ScenarioOutline
   Scenario Outline: Add multiple Users with Scenario Outline
     When user enter "<Username>", "<UserEmail>", "<UserContact>", "<AssignPassword>"
@@ -22,6 +32,11 @@ Feature: Add multiple Users to ATS
       | Jones    | jones@joness.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       | Mike     | mike@mike.com    |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
 
+  
+  
+  
+  
+  
   #Cucumber DataTable
   @CucumberDataTable
   Scenario: Adding multible users using  DataTable
@@ -32,9 +47,15 @@ Feature: Add multiple Users to ATS
       | Jimmy    | jimmy@joness.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       | Michael  | michael@mike.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       
-  # this string is a  "adduserfromexcelsheet" sheet name from excel    
+  
+  
+  
+  
+  
+  
+  # this is a  "adduserfromexcelsheet" sheet name from excel    
   @Excel
   Scenario: Adding multible users from excel file
   When user enter data from excel sheet "adduserfromexcelsheet" 
-  Then user is succesfuly added
+  Then user is succesfully added
     

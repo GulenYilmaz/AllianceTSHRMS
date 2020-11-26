@@ -184,7 +184,7 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 			sendText(ATSUserManagementPageElements.ATSump.userImage, data.get("UploadPicture"));
 			Thread.sleep(2000);
 
-			// click checkboxs
+			// click checkboxshh
 			Thread.sleep(2000);
 			ATSUserManagementPageElements.ATSump.checkBoxGradesManagement.click();
 			Thread.sleep(2000);
@@ -206,10 +206,10 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 
 	}
 
-	@Then("user is succesfuly added")
-	public void user_is_succesfuly_added() {
-
+	@Then("user is succesfully added")
+	public void user_is_succesfully_added() {
 		System.out.println("Multible users added succesfully");
 
-	}
+	}	
+	
 }
