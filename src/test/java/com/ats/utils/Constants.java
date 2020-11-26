@@ -14,9 +14,8 @@ public class Constants extends CommonMethods{
 	public static final int EXPLICIT_WAIT_TIME = 30;
 
 	
-    public static final String EXCEL_FILEPATH=System.getProperty("user.dir")+"\\src\\test\\resources\\testdata\\HrmsTestData (3).xlsx"; 
-    
-    
+    public static final String EXCEL_FILEPATH="C:\\Users\\gulen\\eclipse-workspace\\AllianceTekSolution_HRMS_Framework\\src\\test\\resources\\testdata\\ATSAddUsers.xlsx"; 
+    public static final String SCREENSHOT_FILEPATH=System.getProperty("user.dir")+"\\screenshot\\";
 	
 	public static void main(String[] args) {
 

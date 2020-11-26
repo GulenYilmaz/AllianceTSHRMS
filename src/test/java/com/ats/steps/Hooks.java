@@ -1,9 +1,11 @@
 package com.ats.steps;
 
 import com.ats.testbase.BaseClass;
+import com.ats.utils.CommonMethods;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class Hooks {
 
@@ -13,7 +15,17 @@ public class Hooks {
 	} 
 	
 	@After
-	public void end() {
+	public void end(Scenario scenario) {
+		byte[] picture;
+		if (scenario.isFailed()) {
+			picture=CommonMethods.takeScreenshot("Failed/"+scenario.getName());
+		}else {
+			picture=CommonMethods.takeScreenshot("Passed/"+scenario.getName());
+		}
+		
+		
+		scenario.attach(picture, "image/png", scenario.getName());
+		
 		BaseClass.tearDown();
 	}
 }

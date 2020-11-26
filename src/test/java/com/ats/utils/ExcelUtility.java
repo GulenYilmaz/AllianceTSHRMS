@@ -1,14 +1,11 @@
 package com.ats.utils;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.imageio.stream.FileImageInputStream;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -53,8 +50,8 @@ public class ExcelUtility extends CommonMethods{
 	 * @param rowIndex
 	 * @return
 	 */
-	private static int columsCount(int rowIndex) {
-		return sheet.getRow(rowIndex).getLastCellNum();
+	private static int columsCount() {
+		return sheet.getRow(0).getLastCellNum();
 
 	}
 
@@ -64,26 +61,25 @@ public class ExcelUtility extends CommonMethods{
 
 	// return a 2d object array of data
 
-	public static Object[][] excelIntoArray(String filePath, String sheetName) {
+	public static Object[][] excelIntoArray(String filePath, String adduserfromexcelsheet) {
 
 		openExcel(filePath);
-		loadSheet(sheetName);
+		loadSheet(adduserfromexcelsheet);
 
-		int rows = rowCount();
-		int colums = columsCount(0);
+		//int rows = rowCount();
+		//int colums = columsCount();
 
-		Object[][] data = new Object[rows - 1][colums];
+		Object[][] data = new Object[rowCount() - 1][columsCount()];
 
+	    //i=row j=column
 		// get rows
-		for (int row = 1; row < rows; row++) {
+		for (int i = 1; i < rowCount(); i++) {
 			// get colums
-			for (int column = 0; column < colums; column++) {
+			for (int j = 0; j < columsCount(); j++) {
 
-				data[row - 1][column] = columsName(row, column);
-
+				data[i - 1][j] = columsName(i, j);
 			}
 		}
-
 		return data;
 	}
 	
@@ -96,11 +92,12 @@ public class ExcelUtility extends CommonMethods{
 		List<Map<String,String>> excelList=new ArrayList<>();
 		  Map<String,String> excelMap;
 		
-		for (int row = 1; row < rowCount(); row++) {
+		  //i=row j=column
+		for (int i = 1; i < rowCount(); i++) {
 			excelMap= new LinkedHashMap<>();//order
 			
-			for (int column = 0; column < columsCount(row); column++) {
-				excelMap.put(columsName(0, column), columsName(row, column));
+			for (int j = 0; j < columsCount(); j++) {
+				excelMap.put(columsName(0, j), columsName(i, j));
 			}
 			
 			excelList.add(excelMap);
@@ -111,7 +108,4 @@ public class ExcelUtility extends CommonMethods{
 		
 		return excelList;
 	}
-	
-	
-
 }

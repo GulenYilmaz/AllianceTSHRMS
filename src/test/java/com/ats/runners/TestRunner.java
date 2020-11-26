@@ -17,7 +17,7 @@ import io.cucumber.junit.CucumberOptions;
 					// if set to true no actual execution will happen
 		monochrome = true
 		,strict=true
-		,tags= "@Excel"
+		,tags= "@addUser"
 		,plugin= {
 				"pretty",//prints gherkin steps in console
 				//"html:target/cucumber-default-report",//create basic html report in specified location

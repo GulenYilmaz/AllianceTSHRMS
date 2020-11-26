@@ -24,8 +24,9 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 
 	@When("user click add button")
 	public void user_click_add_button() throws InterruptedException {
-		ATSUserManagementPageElements.ATSump.addUserButton.click();
+
 		Thread.sleep(5000);
+		ATSUserManagementPageElements.ATSump.addUserButton.click();
 
 	}
 
@@ -40,8 +41,6 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 		Thread.sleep(2000);
 		sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, userPassword);
 		Thread.sleep(2000);
-		
-		
 
 	}
 
@@ -114,81 +113,28 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 
 	// dataTable for just one step
 	@When("user enters details and click save button then users are added")
-	public void user_enters_details_and_click_save_button_then_users_are_added(DataTable dataTable) throws InterruptedException {
+	public void user_enters_details_and_click_save_button_then_users_are_added(DataTable dataTable)
+			throws InterruptedException {
 
-		List<Map<String, String>> addUserList=dataTable.asMaps();
-		
-		for(Map<String, String> user :addUserList) {
-			   String expectedUserName= user.get("Username").toString();
-			   String expectedUserEmail= user.get("UserEmail").toString();
-			   String expectedUserContact= user.get("UserContact").toString();
-			   String expectedAssignPassword= user.get("AssignPassword").toString();
-			   String expectedUploadPicture= user.get("UploadPicture").toString();
-			   
-			   sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, expectedUserName);
-			   Thread.sleep(2000);
-			   sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, expectedUserEmail);
-			   Thread.sleep(2000);
-			   sendText(ATSUserManagementPageElements.ATSump.addUserContactBox, expectedUserContact);
-			   Thread.sleep(2000);
-			   sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, expectedAssignPassword);
-			   Thread.sleep(2000);
-			   sendText(ATSUserManagementPageElements.ATSump.userImage, expectedUploadPicture);	   
-			   
-			   
-			   
-			   Thread.sleep(2000);
-				ATSUserManagementPageElements.ATSump.checkBoxGradesManagement.click();
-				Thread.sleep(2000);
-				ATSUserManagementPageElements.ATSump.checkBoxCoursesManagement.click();
-				Thread.sleep(2000);
-				ATSUserManagementPageElements.ATSump.checkBoxTeacherManagement.click();
-				Thread.sleep(2000);
-				ATSUserManagementPageElements.ATSump.checkBoxStudentManagement.click();
-				Thread.sleep(2000);
-				ATSUserManagementPageElements.ATSump.checkBoxUserManagement.click();
-				Thread.sleep(2000);
-				ATSUserManagementPageElements.ATSump.checkBoxToDos.click();
-				Thread.sleep(2000);
-				
-				ATSUserManagementPageElements.ATSump.AddUserSaveButton.click();
-				
-				ATSUserManagementPageElements.ATSump.addUserButton.click();
-				Thread.sleep(5000);
-				
-		}
-	}
-	
-	
+		List<Map<String, String>> addUserList = dataTable.asMaps();
 
-	// from excel
-	@When("user enter data from excel sheet {string}")
-	public void user_enter_data_from_excel_sheet(String sheetName) throws InterruptedException {
-	 
-		List<Map<String,String>> excelDataList= ExcelUtility.dataFromExcelFile(Constants.EXCEL_FILEPATH, sheetName);
-		
-		for (Map<String, String> data : excelDataList) {
-			
-			
-			// get data from excel
-			String username=data.get("Username");
-			String useremail=data.get("UserEmail");
-			String usercontact=data.get("UserContact");
-			String userpassword=data.get("AssignPassword");
-			String uploadPicture=data.get("UploadPicture");
-			
-			
-			//sent user data from excel
-			sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, username);
+		for (Map<String, String> user : addUserList) {
+			String expectedUserName = user.get("Username").toString();
+			String expectedUserEmail = user.get("UserEmail").toString();
+			String expectedUserContact = user.get("UserContact").toString();
+			String expectedAssignPassword = user.get("AssignPassword").toString();
+			String expectedUploadPicture = user.get("UploadPicture").toString();
+
+			sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, expectedUserName);
 			Thread.sleep(2000);
-			sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, useremail);
+			sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, expectedUserEmail);
 			Thread.sleep(2000);
-			sendText(ATSUserManagementPageElements.ATSump.addUserContactBox, usercontact);
+			sendText(ATSUserManagementPageElements.ATSump.addUserContactBox, expectedUserContact);
 			Thread.sleep(2000);
-			sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, userpassword);
+			sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, expectedAssignPassword);
 			Thread.sleep(2000);
-			
-			//click checkboxs
+			sendText(ATSUserManagementPageElements.ATSump.userImage, expectedUploadPicture);
+
 			Thread.sleep(2000);
 			ATSUserManagementPageElements.ATSump.checkBoxGradesManagement.click();
 			Thread.sleep(2000);
@@ -202,13 +148,62 @@ public class ATSUserManegementAddSteps extends CommonMethods {
 			Thread.sleep(2000);
 			ATSUserManagementPageElements.ATSump.checkBoxToDos.click();
 			Thread.sleep(2000);
-			
+
+			ATSUserManagementPageElements.ATSump.AddUserSaveButton.click();
+
+			ATSUserManagementPageElements.ATSump.addUserButton.click();
+			Thread.sleep(5000);
+
+		}
+	}
+
+	// from excel  
+	@When("user enter data from excel sheet {string}")
+	public void user_enter_data_from_excel_sheet(String adduserfromexcelsheet) throws InterruptedException {
+
+		List<Map<String, String>> excelDataList = ExcelUtility.dataFromExcelFile(Constants.EXCEL_FILEPATH, adduserfromexcelsheet);
+		
+		for (Map<String, String> data : excelDataList) {
+
+			// get data from excel
+			String username = data.get("Username");
+			String useremail = data.get("UserEmail");
+			String usercontact = data.get("UserContact");
+			String userpassword = data.get("AssignPassword");
+			String uploadPicture = data.get("UploadPicture");
+
+			// sent user data from excel
+			sendText(ATSUserManagementPageElements.ATSump.addUserNameBox, data.get("Username"));
+			Thread.sleep(2000);
+			sendText(ATSUserManagementPageElements.ATSump.AddUserEmailBox, data.get("UserEmail"));
+			Thread.sleep(2000);
+			sendText(ATSUserManagementPageElements.ATSump.addUserContactBox, data.get("UserContact"));
+			Thread.sleep(2000);
+			sendText(ATSUserManagementPageElements.ATSump.AddUserPasswordBox, data.get("AssignPassword"));
+			Thread.sleep(2000);
+			sendText(ATSUserManagementPageElements.ATSump.userImage, data.get("UploadPicture"));
+			Thread.sleep(2000);
+
+			// click checkboxs
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxGradesManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxCoursesManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxTeacherManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxStudentManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxUserManagement.click();
+			Thread.sleep(2000);
+			ATSUserManagementPageElements.ATSump.checkBoxToDos.click();
+			Thread.sleep(2000);
+
 			ATSUserManagementPageElements.ATSump.AddUserSaveButton.click();
 			Thread.sleep(5000);
-			
+
 		}
-		
-		
+
 	}
 
 	@Then("user is succesfuly added")

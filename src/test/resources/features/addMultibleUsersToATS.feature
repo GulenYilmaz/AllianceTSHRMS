@@ -32,9 +32,9 @@ Feature: Add multiple Users to ATS
       | Jimmy    | jimmy@joness.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       | Michael  | michael@mike.com |  1234567890 |       12345678 | C:\\Users\\gulen\\Desktop\\1.jpg |
       
-      
+  # this string is a  "adduserfromexcelsheet" sheet name from excel    
   @Excel
   Scenario: Adding multible users from excel file
-  When user enter data from excel sheet "UserData" 
+  When user enter data from excel sheet "adduserfromexcelsheet" 
   Then user is succesfuly added
     
