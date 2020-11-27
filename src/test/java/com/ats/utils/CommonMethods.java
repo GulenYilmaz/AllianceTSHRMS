@@ -4,16 +4,20 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.UnexpectedTagNameException;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.ats.testbase.PageInitializer;
 
@@ -29,14 +33,7 @@ public class CommonMethods extends PageInitializer {
 		element.sendKeys(text);
 	}
 
-	/**
-	 * 
-	 * @param element
-	 */
-	public static void click(WebElement element) {
-		element.click();
-	}
-
+	
 	/**
 	 * Method that checks if text is there and then selects it
 	 *
@@ -87,67 +84,56 @@ public class CommonMethods extends PageInitializer {
 		}
 	}
 
-	
-	
 	public static void acceptAlert() {
-	
+
 		try {
-			Alert alert=driver.switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.accept();
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
-	
+
 	public static void dismissAlert() {
-		
-		
+
 		try {
-			Alert alert=driver.switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.dismiss();
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 		}
-	}	
-	
-	
+	}
+
 	public static String getAlertTextFromPOPUP() {
-		String alertTextFromPOPUP=null;
+		String alertTextFromPOPUP = null;
 		try {
-			Alert alert=driver.switchTo().alert();
-			alertTextFromPOPUP=alert.getText();
+			Alert alert = driver.switchTo().alert();
+			alertTextFromPOPUP = alert.getText();
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 		}
-		
+
 		return alertTextFromPOPUP;
 	}
-	
-	
-	
+
 	public static void sendAlertTextTOPOPUP(String text) {
 		try {
-			Alert alert=driver.switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.sendKeys(text);
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	public static void switchToFrame(String nameOrID) {
 		try {
 			driver.switchTo().frame(nameOrID);
-		} catch  (NoSuchFrameException e) {
+		} catch (NoSuchFrameException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static void switchToFrame(WebElement element) {
 		try {
 			driver.switchTo().frame(element);
@@ -155,9 +141,7 @@ public class CommonMethods extends PageInitializer {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	public static void switchToFrame(int index) {
 		try {
 			driver.switchTo().frame(index);
@@ -165,8 +149,79 @@ public class CommonMethods extends PageInitializer {
 			e.printStackTrace();
 		}
 	}
+
+	public static void switchToChildWindow() {
+		// get window page id
+		String ParentWindow = driver.getWindowHandle();
+		Set<String> windows = driver.getWindowHandles();
+		for (String window : windows) {
+			if (!window.equals(ParentWindow)) {
+				driver.switchTo().window(window);
+				break;
+			}
+		}
+
+	}
 	
+	/**
+	 * only one WebElement 
+	 * @return
+	 */
+	public static WebDriverWait getWaitObject() {
+		
+		WebDriverWait wait =new WebDriverWait(driver, Constants.EXPLICIT_WAIT_TIME);
+		return wait;
+		
+	}
 	
+	public static WebElement waitForClickability(WebElement element) {
+		
+		return getWaitObject().until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	public static WebElement waitForVisibility(WebElement element ) {
+		return getWaitObject().until(ExpectedConditions.visibilityOf(element));
+	}
+	
+    public static void click(WebElement element) {
+    	waitForClickability(element);
+    }
+    
+    
+    
+    
+    public static JavascriptExecutor getJavascriptExecuterObject() {
+    	JavascriptExecutor js=(JavascriptExecutor)driver;
+    	return js;
+    }
+    
+    public static void JavascriptClick(WebElement element) {
+    	getJavascriptExecuterObject().executeScript("arguments[0].click();", element);
+    }
+    
+    public static void scrollToElement(WebElement element) {
+    	getJavascriptExecuterObject().executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+    
+    
+    public static void  scrollDown (int pixel) {
+    	getJavascriptExecuterObject().executeScript("window.scrollBy(0," + pixel + ")");
+    }    
+    
+    public static void  scrollUp (int pixel) {
+    	getJavascriptExecuterObject().executeScript("window.scrollBy(0,-" + pixel + ")");
+    }    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	/**
 	 * This method will take a screenshot
 	 */
