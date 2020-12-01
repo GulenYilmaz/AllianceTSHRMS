@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DataBaseUtilsmSQL {
+public class DataBaseUtilsMySQL {
 
 	private static Connection connection;
 	private static Statement statement;
