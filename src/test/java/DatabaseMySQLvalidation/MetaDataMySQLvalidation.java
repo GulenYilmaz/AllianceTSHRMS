@@ -48,8 +48,8 @@ public class MetaDataMySQLvalidation {
 		System.out.println(columnNames);
 		
 		for(int i=1; i<=columnNumber; i++ ) {
-			String columnNmames= resultSetMetaData.getColumnName(i);
-			System.out.println(columnNames);
+			String columnName= resultSetMetaData.getColumnName(i);
+			System.out.println(columnName);
 		}
 		
 	}
